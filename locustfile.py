@@ -1,15 +1,18 @@
-from locust import HttpUser, task, between, constant, TaskSet
+from locust import HttpUser, task, constant, TaskSet
 
 
 class WebsiteTest(TaskSet):
 
-    @task(1)
-    def load_on_website(self):
-        self.client.get("/")
+    @task
+    def engine6_webpage(self):
+        count = 0
+        with open("file.txt") as fp:
+            for line in fp:
+                self.client.get(line.strip())
 
 
 class MyLoadTest(HttpUser):
-    host = "http://e6.df"
+    host = "http://bmwvwtopeka-com.website.tp9249.df-tp.com"
     wait_time = constant(1)
 
     def on_start(self):
